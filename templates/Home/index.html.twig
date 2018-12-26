@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <ul>
+    {% for transaction in transactions %}
+        <li>{{ transaction.id }} - {{ transaction.status }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

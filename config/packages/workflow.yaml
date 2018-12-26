@@ -1,0 +1,28 @@
+framework:
+    workflows:
+        transaction:
+            type: 'workflow' # or 'state_machine'
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'single_state' # or 'single_state'
+                arguments:
+                    - 'status'
+            supports:
+                - 'App\Entity\Transaction'
+            initial_place: new
+            places:
+                - new
+                - processing
+                - declined
+                - accepted
+            transitions:
+                process:
+                    from: new
+                    to:   processing
+                decline:
+                    from: processing
+                    to:   declined
+                accept:
+                    from: processing
+                    to:   accepted
